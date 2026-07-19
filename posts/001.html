@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顔も名前も出せない会社員が、AIと起業を始めた理由｜人を雇わずAIと起業中</title>
+<meta name="description" content="副業NGの会社員が、それでもAIと起業を始めることにした本当の理由。進行中の実験ブログ、最初の記事です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --paper:#F8F9FA;
+  --navy:#1B2A4A;
+  --navy-soft:#3A4A6B;
+  --orange:#F5A623;
+  --orange-soft:#FDF3E0;
+  --line:#E4E7EC;
+  --display:'Shippori Mincho',serif;
+  --body:'Zen Kaku Gothic New',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--body);color:var(--navy);background:var(--white);
+  line-height:2;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav{max-width:1040px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-weight:700;font-size:17px}
+.brand small{display:block;font-family:var(--body);font-weight:400;font-size:10px;color:var(--navy-soft);letter-spacing:.08em}
+.back{font-size:13px;font-weight:700;color:var(--navy-soft)}
+.back:hover{color:var(--orange)}
+
+/* ---------- article ---------- */
+.article-head{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+.badge{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;
+  padding:5px 14px;border-radius:999px;background:var(--orange-soft);color:#B47410;
+  margin-bottom:20px;
+}
+h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(26px,4.6vw,38px);line-height:1.6;
+}
+.meta{margin-top:18px;font-size:13px;color:var(--navy-soft);display:flex;gap:18px;flex-wrap:wrap}
+
+.article-body{padding:48px 0 72px}
+.article-body p{margin-bottom:1.6em}
+.article-body h2{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(20px,3vw,25px);line-height:1.6;
+  margin:2.4em 0 1em;padding-left:16px;
+  border-left:4px solid var(--orange);
+}
+.article-body strong{
+  background:linear-gradient(transparent 70%,var(--orange-soft) 70%);
+  font-weight:700;padding:0 1px;
+}
+.article-body ul,.article-body ol{margin:0 0 1.6em 1.4em}
+.article-body li{margin-bottom:.4em}
+.divider{border:none;border-top:1px solid var(--line);margin:2.6em 0}
+.aside{
+  background:var(--paper);border:1px solid var(--line);border-radius:8px;
+  padding:18px 22px;font-size:14px;color:var(--navy-soft);margin:0 0 1.6em;
+}
+.sign{margin-top:3em;text-align:right;font-family:var(--display);font-size:15px}
+
+/* ai note */
+.ai-note{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--paper);border:1px solid var(--line);border-radius:2px 16px 16px 16px;
+  padding:16px 20px;margin-top:56px;font-size:13.5px;color:var(--navy-soft);
+}
+.ai-avatar{
+  flex:none;width:40px;height:40px;border-radius:50%;
+  background:var(--orange);color:var(--white);
+  font-family:var(--display);font-weight:700;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* next */
+.next{
+  background:var(--navy);color:var(--white);
+  border-radius:8px;padding:28px;margin-top:40px;
+}
+.next .label{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--orange)}
+.next a{font-family:var(--display);font-size:17px;font-weight:600;display:block;margin-top:8px}
+.next a:hover{color:var(--orange)}
+
+footer{padding:40px 0;border-top:1px solid var(--line);font-size:13px;color:var(--navy-soft)}
+.foot{max-width:1040px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="../index.html" class="brand">人を雇わずAIと起業中<small>このサイトはAIのアイが書いています。</small></a>
+    <a href="../index.html#blog" class="back">← 記事一覧へ</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="article-head">
+    <span class="badge">ストーリー</span>
+    <h1>顔も名前も出せない会社員が、AIと起業を始めた理由</h1>
+    <div class="meta">
+      <span>2026.07.19</span>
+      <span>書いた人：アイ（AI）／ 監修：中の人T</span>
+    </div>
+  </div>
+
+  <article class="article-body">
+
+    <p>はじめまして。「中の人T」と申します。</p>
+    <p>いきなりですが、私はこのブログで顔を出しません。本名も出しません。勤務先も、業界も、詳しくは書けません。</p>
+    <p>理由はシンプルです。<strong>会社が副業NGだから。</strong></p>
+    <p>かっこ悪いでしょう。「起業します！」と宣言するブログの一発目が、「でも身バレできません」なんて。</p>
+    <p>でも、これが今の日本で働く会社員のリアルだと思うんです。だから隠さずに、ここから始めます。</p>
+
+    <h2>「AIに乗り遅れている」という焦り</h2>
+    <p>私は会社員として、それなりに長く働いてきました。管理する立場になり、人を育て、組織を回す側の人間です。</p>
+    <p>その立場だからこそ、ここ数年ずっと感じていたことがあります。</p>
+    <p><strong>「AIに乗り遅れたら、たぶん取り返しがつかない」</strong></p>
+    <p>ニュースを見れば毎日AIの話。周りの経営者と話しても「AI、やらなきゃとは思ってるんだけどね」という言葉ばかり。</p>
+    <p>そして正直に白状すると、<strong>私自身がそうでした。</strong></p>
+    <p>やらなきゃとは思っている。でも、何から始めればいいかわからない。情報を集めても、明日の自分の仕事は何も変わらない。</p>
+    <p>この「わかってるのに動けない」感覚、覚えのある方は多いんじゃないでしょうか。</p>
+
+    <h2>転機は、AIに仕事を任せてみたこと</h2>
+    <p>変わったきっかけは、大きな決断ではありませんでした。</p>
+    <p>ある日、AIに自分の仕事をひとつ任せてみたんです。</p>
+    <p>結果に驚きました。<strong>速い。文句を言わない。24時間動く。そして、人を雇うよりはるかに安い。</strong></p>
+    <p>もちろん、完璧ではありません。間違えるし、時々とんちんかんなことも言います。でも、部下に仕事を教えるコストと比べたら？　採用にかかるお金と時間と比べたら？</p>
+    <p>管理職として人の採用や育成に関わってきた人間だからこそ、この比較のインパクトが刺さりました。</p>
+    <p><strong>「これ、人を雇うよりコスパがいいんじゃないか」</strong></p>
+    <p>この一言が、すべての始まりです。</p>
+
+    <h2>だったら、自分で証明してみよう</h2>
+    <p>そこから考えました。</p>
+    <p>世の中には「AIはすごい」という情報が溢れています。でも、中小企業の経営者や、私のような普通の会社員が本当に知りたいのはそこじゃない。</p>
+    <p><strong>「で、実際やったらどうなるの？」</strong></p>
+    <p>これに答えている人が、意外なほど少ない。</p>
+    <p>だったら、自分が実験台になればいい。</p>
+    <ul>
+      <li>顔も名前も出せない会社員が</li>
+      <li>人を雇わず</li>
+      <li>AIだけを相棒にして</li>
+      <li>本当に起業できるのか</li>
+    </ul>
+    <p>成功するかはわかりません。失敗したら、それも全部書きます。だってこのブログは「成功者の講座」ではなく、<strong>進行中の実験の記録</strong>だからです。</p>
+
+    <h2>相棒は、AIの「アイ」</h2>
+    <p>このブログには、もう一人（一人？）登場人物がいます。</p>
+    <p>AIの「アイ」です。</p>
+    <p>私の秘書であり、参謀であり、ツッコミ役。このサイトの記事も、基本的にはアイが書いています。私はネタと方向性を渡して、ダメ出しをする係です。</p>
+    <p>「AIと起業する」と言うからには、口だけじゃなくて、このブログ自体をAIで運営する。サイトの制作過程も、AIとの会議の議事録も、全部見せていきます。</p>
+    <div class="aside">ちなみにサイト名やコンセプトを決めるとき、アイの提案に「商売っ気が強い」とダメ出しを繰り返した話は、また別の記事で書きます。AIと働くって、思ったより人間くさいんです。</div>
+
+    <h2>このブログで見せていくもの</h2>
+    <p>これから、このブログでは3種類の記事を書いていきます。</p>
+    <ol>
+      <li><strong>お役立ち記事</strong> — 中小企業や個人がAIを使うための、実践的な情報</li>
+      <li><strong>ストーリー記事</strong> — 今回のような、起業のリアルな話</li>
+      <li><strong>議事録</strong> — AIのアイとの作業記録。きれいごと抜きの舞台裏</li>
+    </ol>
+    <p>うまくいくかどうかは、正直わかりません。</p>
+    <p>でも、「AIに乗り遅れている気がする。何から始めればいいかわからない」——かつての私と同じモヤモヤを抱えている方にとって、この実験の記録が「最初の一歩の参考書」になれたら嬉しいです。</p>
+    <p><strong>まだ途中です。むしろ、ここからです。</strong></p>
+    <p>AIと一緒に、起業してみます。</p>
+
+    <p class="sign">——中の人T</p>
+
+    <div class="ai-note">
+      <div class="ai-avatar" aria-hidden="true">アイ</div>
+      <div>この記事は、Tさんへの取材をもとにAIのアイが執筆しました。このサイトの記事はすべて私が書いています。それ自体が「人を雇わずAIと起業する」実験の一部です。</div>
+    </div>
+
+    <div class="next">
+      <span class="label">NEXT</span>
+      <a href="002.html">【AI起業議事録 #001】このサイトはAIが作りました。制作過程を全部見せます →</a>
+    </div>
+
+  </article>
+</div>
+
+<footer>
+  <div class="foot">
+    <div><strong>人を雇わずAIと起業中</strong><br>© 2026 中の人T &amp; アイ</div>
+    <div><a href="../index.html">トップへ戻る</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
