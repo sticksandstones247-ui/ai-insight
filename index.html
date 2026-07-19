@@ -3,756 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI INSIGHT — AIの最前線を届ける</title>
+<title>人を雇わずAIと起業中｜このサイトはAIのアイが書いています</title>
+<meta name="description" content="顔も名前も出せない会社員が、人を雇わずAIだけを相棒に起業できるのか。進行中の実験を、AIのアイがリアルタイムで記録するブログです。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #080c14;
-    --surface: #0d1422;
-    --border: #1a2540;
-    --accent: #00e5ff;
-    --accent2: #ff3d71;
-    --text: #c8d6f0;
-    --text-dim: #5a7a9a;
-    --card-bg: #0d1830;
-  }
+:root{
+  --white:#FFFFFF;
+  --paper:#F8F9FA;
+  --navy:#1B2A4A;
+  --navy-soft:#3A4A6B;
+  --orange:#F5A623;
+  --orange-soft:#FDF3E0;
+  --line:#E4E7EC;
+  --display:'Shippori Mincho',serif;
+  --body:'Zen Kaku Gothic New',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--navy);
+  background:var(--white);
+  line-height:1.9;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em}
+.brand small{display:block;font-family:var(--body);font-weight:400;font-size:10px;color:var(--navy-soft);letter-spacing:.08em}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500}
+.nav-links a{padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{border-color:var(--orange)}
+a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
+@media(max-width:720px){.nav-links{display:none}}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+/* ---------- hero ---------- */
+.hero{padding:88px 0 72px;background:var(--white)}
+.hero .eyebrow{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.22em;
+  color:var(--navy-soft);border:1px solid var(--line);
+  padding:6px 14px;border-radius:999px;margin-bottom:28px;
+}
+.hero h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(34px,6vw,58px);
+  line-height:1.35;letter-spacing:.02em;
+}
+.hero h1 .accent{
+  background:linear-gradient(transparent 68%,var(--orange-soft) 68%);
+  padding:0 2px;
+}
+.hero-lede{margin-top:24px;max-width:34em;color:var(--navy-soft);font-size:15px}
 
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ai speech bubble — signature element */
+.ai-line{display:flex;align-items:flex-start;gap:14px;margin-top:40px;max-width:520px}
+.ai-avatar{
+  flex:none;width:48px;height:48px;border-radius:50%;
+  background:var(--orange);color:var(--white);
+  font-family:var(--display);font-weight:700;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(245,166,35,.35);
+}
+.ai-bubble{
+  position:relative;background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:2px 16px 16px 16px;
+  padding:14px 18px;font-size:14.5px;
+}
+.ai-bubble strong{color:var(--orange);font-weight:700}
+.ai-bubble .who{display:block;font-size:11px;letter-spacing:.12em;color:var(--navy-soft);margin-bottom:4px}
+.hero-cta{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-block;font-weight:700;font-size:15px;
+  padding:14px 34px;border-radius:4px;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-primary{background:var(--navy);color:var(--white)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(27,42,74,.25)}
+.link-quiet{font-size:14px;color:var(--navy-soft);border-bottom:1px solid var(--line)}
+.link-quiet:hover{border-color:var(--orange)}
 
-  /* ── HEADER ── */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(8,12,20,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
+/* ---------- section base ---------- */
+section{padding:84px 0}
+.sec-label{
+  font-size:12px;font-weight:700;letter-spacing:.24em;
+  color:var(--orange);margin-bottom:14px;
+}
+.sec-title{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(24px,3.6vw,34px);line-height:1.5;margin-bottom:28px;
+}
+.alt{background:var(--paper)}
 
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 0.15em;
-    color: #fff;
-  }
-  .logo span { color: var(--accent); }
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+.profile-card{
+  background:var(--white);border:1px solid var(--line);border-radius:8px;
+  padding:28px;box-shadow:0 2px 10px rgba(27,42,74,.05);
+}
+.profile-card .name{font-family:var(--display);font-size:20px;font-weight:700}
+.profile-card .role{font-size:13px;color:var(--navy-soft);margin-bottom:16px}
+.profile-card ul{list-style:none;font-size:14px}
+.profile-card li{padding:9px 0;border-top:1px solid var(--line)}
+.profile-card li:first-child{border-top:none}
+.about-text p+p{margin-top:1.2em}
 
-  nav { display: flex; gap: 2rem; }
-  nav a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--accent); }
+/* ---------- pain ---------- */
+.pain-list{display:grid;gap:16px;max-width:760px}
+.pain{
+  background:var(--white);border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:4px;padding:20px 24px;
+}
+.pain h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.pain p{font-size:14px;color:var(--navy-soft)}
 
-  .nav-cta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 16px;
-    cursor: pointer;
-    letter-spacing: 0.08em;
-    transition: all 0.2s;
-  }
-  .nav-cta:hover { background: var(--accent); color: var(--bg); }
+/* ---------- proof ---------- */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:760px){.proof-grid{grid-template-columns:1fr}}
+.proof{
+  background:var(--paper);border-radius:8px;padding:28px 24px;
+  border-top:3px solid var(--orange);
+}
+.proof h3{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:10px}
+.proof p{font-size:14px;color:var(--navy-soft)}
+.proof-note{margin-top:28px;font-size:14px;color:var(--navy-soft)}
 
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    z-index: 1;
-    min-height: 88vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 5vw;
-    overflow: hidden;
-  }
+/* ---------- blog ---------- */
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:760px){.post-grid{grid-template-columns:1fr}}
+.post{
+  background:var(--white);border:1px solid var(--line);border-radius:8px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .18s,box-shadow .18s;
+}
+.post:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(27,42,74,.10)}
+.post-head{padding:18px 22px 0;display:flex;gap:8px;align-items:center}
+.badge{
+  font-size:11px;font-weight:700;letter-spacing:.06em;
+  padding:4px 10px;border-radius:999px;
+}
+.badge-story{background:var(--orange-soft);color:#B47410}
+.badge-log{background:#E8EDF6;color:var(--navy)}
+.badge-guide{background:#EAF4EC;color:#2F6B45}
+.post h3{
+  font-family:var(--display);font-size:17px;font-weight:600;line-height:1.6;
+  padding:12px 22px 6px;flex:1;
+}
+.post p{font-size:13.5px;color:var(--navy-soft);padding:0 22px 18px}
+.post .more{
+  font-size:13px;font-weight:700;color:var(--orange);
+  padding:0 22px 20px;
+}
 
-  .hero-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: fadeUp 0.6s 0.2s forwards;
-  }
+/* ---------- cta ---------- */
+.cta-sec{background:var(--navy);color:var(--white);text-align:center}
+.cta-sec .sec-label{color:var(--orange)}
+.cta-sec .sec-title{color:var(--white)}
+.cta-sec p{max-width:36em;margin:0 auto 36px;color:#C6CEDD;font-size:15px}
+.btn-orange{background:var(--orange);color:var(--navy)}
+.btn-orange:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(245,166,35,.4)}
+.cta-quiet{display:block;margin-top:20px;font-size:13px;color:#8E9AB3}
 
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.5rem, 10vw, 9rem);
-    line-height: 0.92;
-    letter-spacing: 0.02em;
-    color: #fff;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.35s forwards;
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-    -webkit-text-stroke: 0px;
-  }
-  .hero h1 .outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-    color: transparent;
-  }
+/* ---------- footer ---------- */
+footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(--navy-soft)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.foot-links{display:flex;gap:20px}
+.foot-links a:hover{color:var(--orange)}
 
-  .hero-sub {
-    max-width: 520px;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--text-dim);
-    margin-top: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.55s forwards;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.7s forwards;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 12px 28px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-    transition: opacity 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 12px 28px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--text); color: #fff; }
-
-  /* Orb BG */
-  .orb {
-    position: absolute;
-    right: -10vw;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 55vw;
-    height: 55vw;
-    max-width: 700px;
-    max-height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 40% 40%,
-      rgba(0,229,255,0.12) 0%,
-      rgba(0,229,255,0.04) 40%,
-      transparent 70%);
-    pointer-events: none;
-    opacity: 0;
-    animation: fadeIn 1.5s 0.5s forwards;
-  }
-  .orb::after {
-    content: '';
-    position: absolute;
-    inset: 15%;
-    border-radius: 50%;
-    border: 1px solid rgba(0,229,255,0.1);
-  }
-
-  /* Stats bar */
-  .stats-bar {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .stat {
-    flex: 1;
-    padding: 1.5rem 5vw;
-    border-right: 1px solid var(--border);
-    opacity: 0;
-    animation: fadeUp 0.6s forwards;
-  }
-  .stat:last-child { border-right: none; }
-  .stat:nth-child(1) { animation-delay: 0.8s; }
-  .stat:nth-child(2) { animation-delay: 0.95s; }
-  .stat:nth-child(3) { animation-delay: 1.1s; }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    color: #fff;
-    letter-spacing: 0.05em;
-  }
-  .stat-num span { color: var(--accent); }
-  .stat-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.15em;
-    margin-top: 2px;
-  }
-
-  /* ── SECTION COMMON ── */
-  section { position: relative; z-index: 1; padding: 5rem 5vw; }
-
-  .section-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.25em;
-    margin-bottom: 0.5rem;
-  }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: #fff;
-    letter-spacing: 0.04em;
-    margin-bottom: 2.5rem;
-  }
-
-  /* ── FEATURED ── */
-  .featured-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1px;
-    background: var(--border);
-  }
-
-  .card {
-    background: var(--card-bg);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .card:hover { background: #111e35; }
-
-  .card-main {
-    grid-row: span 2;
-    padding: 3rem;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .card:hover::before { opacity: 1; }
-
-  .card-cat {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    margin-bottom: 0.8rem;
-  }
-  .card h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: #fff;
-    line-height: 1.1;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.8rem;
-  }
-  .card-main h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
-
-  .card p {
-    font-size: 0.85rem;
-    line-height: 1.75;
-    color: var(--text-dim);
-  }
-
-  .card-meta {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--text-dim);
-  }
-  .card-meta .date::before { content: '// '; color: var(--accent); }
-
-  /* Thumbnail placeholder */
-  .thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #0d2040 0%, #061228 100%);
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .thumb-icon {
-    font-size: 2.5rem;
-    opacity: 0.3;
-  }
-  .thumb::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-      rgba(0,229,255,0.08) 0%,
-      transparent 60%);
-  }
-
-  /* ── ARTICLE LIST ── */
-  .article-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-
-  .article-item {
-    background: var(--card-bg);
-    padding: 1.5rem 2rem;
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    cursor: pointer;
-    transition: background 0.2s;
-    border-left: 3px solid transparent;
-  }
-  .article-item:hover {
-    background: #111e35;
-    border-left-color: var(--accent);
-  }
-
-  .article-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
-    color: var(--border);
-    line-height: 1;
-    min-width: 2.5rem;
-  }
-
-  .article-body h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.4rem;
-    line-height: 1.4;
-  }
-  .article-body p {
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  .article-tag {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    padding: 2px 8px;
-    background: rgba(0,229,255,0.08);
-    border: 1px solid rgba(0,229,255,0.2);
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  /* ── CATEGORIES ── */
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1px;
-    background: var(--border);
-  }
-
-  .cat-card {
-    background: var(--card-bg);
-    padding: 2rem 1.5rem;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-align: center;
-  }
-  .cat-card:hover { background: #111e35; }
-
-  .cat-icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-    display: block;
-  }
-  .cat-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    color: #fff;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.3rem;
-  }
-  .cat-count {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--text-dim);
-  }
-
-  /* ── CTA BANNER ── */
-  .cta-banner {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 3rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .cta-banner h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: #fff;
-    letter-spacing: 0.05em;
-  }
-  .cta-banner p { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.3rem; }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-  }
-  .footer-logo span { color: var(--accent); }
-
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-
-  .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── AD PLACEHOLDER ── */
-  .ad-slot {
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.01),
-      rgba(255,255,255,0.01) 10px,
-      transparent 10px,
-      transparent 20px
-    );
-    border: 1px dashed var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dim);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    margin: 2rem 5vw;
-  }
-  .ad-slot-banner { height: 90px; }
-  .ad-slot-rect { height: 250px; max-width: 300px; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { display: none; }
-    .featured-grid { grid-template-columns: 1fr; }
-    .card-main { padding: 2rem; }
-    .stats-bar { flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid var(--border); }
-    .cta-banner { padding: 2rem; }
-  }
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .post:hover,.btn-primary:hover,.btn-orange:hover{transform:none}
+}
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header>
-  <div class="logo">AI<span>INSIGHT</span></div>
-  <nav>
-    <a href="#">ホーム</a>
-    <a href="#">ニュース</a>
-    <a href="#">ツール紹介</a>
-    <a href="#">活用術</a>
-    <a href="#">プロフィール</a>
-  </nav>
-  <button class="nav-cta">メルマガ登録</button>
+  <div class="wrap nav">
+    <a href="#" class="brand">人を雇わずAIと起業中<small>このサイトはAIのアイが書いています。</small></a>
+    <nav class="nav-links">
+      <a href="#blog">ブログ</a>
+      <a href="#about">私について</a>
+      <a href="#service">サービス</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
 </header>
 
-<!-- ── AD BANNER (TOP) ── -->
-<div class="ad-slot ad-slot-banner">[ GOOGLE ADSENSE 728×90 ]</div>
+<!-- ① ヒーロー -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">進行中の実験記録</span>
+    <h1>人を雇わず、<br><span class="accent">AIと起業中。</span></h1>
+    <p class="hero-lede">顔も名前も出せない会社員が、AIだけを相棒に起業できるのか。成功もつまずきも、そのまま記録していく実験ブログです。</p>
+    <div class="ai-line">
+      <div class="ai-avatar" aria-hidden="true">アイ</div>
+      <div class="ai-bubble">
+        <span class="who">AIのアイ</span>
+        このサイトの記事は、AIの私が書いています。<strong>それ自体が実験です。</strong>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#blog" class="btn btn-primary">実験の記録を読む</a>
+      <a href="#about" class="link-quiet">中の人Tについて</a>
+    </div>
+  </div>
+</section>
 
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="orb"></div>
-  <p class="hero-tag">// AI INFORMATION MEDIA</p>
-  <h1>
-    AI<em>の今</em>を<br>
-    <span class="outline">DECODE</span><br>
-    する。
-  </h1>
-  <p class="hero-sub">
-    ChatGPT・Gemini・Claude…加速するAI革命の最前線。<br>
-    ツール紹介・活用術・最新ニュースを週3回更新。
-  </p>
-  <div class="hero-actions">
-    <button class="btn-primary">記事を読む →</button>
-    <button class="btn-ghost">カテゴリ一覧</button>
+<!-- ② 自己紹介 -->
+<section id="about" class="alt">
+  <div class="wrap reveal">
+    <p class="sec-label">ABOUT</p>
+    <h2 class="sec-title">中の人Tについて</h2>
+    <div class="about-grid">
+      <div class="profile-card">
+        <p class="name">中の人T</p>
+        <p class="role">会社員（管理職）× AI起業 実験中</p>
+        <ul>
+          <li>人事・財務・総務・営業を横断する経営管理の現場出身</li>
+          <li>会社は副業NG。だから顔も名前も出せません</li>
+          <li>相棒はAIの「アイ」。記事執筆も彼女の担当</li>
+        </ul>
+      </div>
+      <div class="about-text">
+        <p>長く会社員として、人を採用し、育て、組織を回す側で働いてきました。だからこそ、人をひとり雇うことの重さを知っています。</p>
+        <p>そんな人間がある日気づいてしまいました。<strong>「AIは、人を雇うよりコスパがいいかもしれない」</strong>——それなら自分が実験台になって確かめよう。このサイトは、その進行中の記録です。</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ── STATS ── -->
-<div class="stats-bar">
-  <div class="stat">
-    <div class="stat-num">120<span>+</span></div>
-    <div class="stat-label">TOTAL ARTICLES</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">50<span>K</span></div>
-    <div class="stat-label">MONTHLY READERS</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">3<span>x</span></div>
-    <div class="stat-label">WEEKLY UPDATES</div>
-  </div>
-</div>
-
-<!-- ── FEATURED ── -->
+<!-- ③ 共感 -->
 <section>
-  <p class="section-tag">// FEATURED</p>
-  <div class="section-title">注目記事</div>
-
-  <div class="featured-grid">
-    <!-- MAIN CARD -->
-    <div class="card card-main">
-      <div class="thumb"><span class="thumb-icon">🤖</span></div>
-      <p class="card-cat">// DEEP DIVE</p>
-      <h2>Claude 4 vs GPT-5：2025年最強AIモデルを徹底比較</h2>
-      <p>コーディング・文章生成・推論力…5つのベンチマークで実力を検証。あなたの用途に最適な選択はどちらか？</p>
-      <div class="card-meta">
-        <span class="date">2025.05.18</span>
-        <span>8 min read</span>
+  <div class="wrap reveal">
+    <p class="sec-label">FEELING</p>
+    <h2 class="sec-title">こんなモヤモヤ、ありませんか？</h2>
+    <div class="pain-list">
+      <div class="pain">
+        <h3>AIに乗り遅れている気がする</h3>
+        <p>ニュースは毎日AIの話。「やらなきゃ」とは思うけれど、日々の業務に追われて手つかずのまま。</p>
       </div>
-    </div>
-
-    <!-- SUB CARDS -->
-    <div class="card">
-      <div class="thumb" style="aspect-ratio:16/7"><span class="thumb-icon" style="font-size:1.5rem">⚡</span></div>
-      <p class="card-cat">// NEWS</p>
-      <h2>Googleが新モデル「Gemini Ultra 2」を発表</h2>
-      <p>マルチモーダル性能がさらに向上。動画・音声・テキストを統合処理。</p>
-      <div class="card-meta"><span class="date">2025.05.15</span></div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="aspect-ratio:16/7"><span class="thumb-icon" style="font-size:1.5rem">🛠️</span></div>
-      <p class="card-cat">// TOOL</p>
-      <h2>無料で使えるAI画像生成ツール7選【2025年版】</h2>
-      <p>Midjourney代替から日本語対応ツールまで厳選紹介。</p>
-      <div class="card-meta"><span class="date">2025.05.12</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── ARTICLE LIST ── -->
-<section style="padding-top: 0;">
-  <p class="section-tag">// LATEST</p>
-  <div class="section-title">最新記事</div>
-
-  <div class="article-list">
-    <div class="article-item">
-      <div class="article-num">01</div>
-      <div class="article-body">
-        <span class="article-tag">活用術</span>
-        <h3>ChatGPTで業務効率を3倍にする10のプロンプト術</h3>
-        <p>コピペで使えるテンプレート付き。会議議事録・メール作成・データ分析に対応。</p>
+      <div class="pain">
+        <h3>何から始めればいいかわからない</h3>
+        <p>情報は溢れているのに、明日の自分の仕事にどう繋がるのかが見えない。</p>
       </div>
-    </div>
-    <div class="article-item">
-      <div class="article-num">02</div>
-      <div class="article-body">
-        <span class="article-tag">ツール紹介</span>
-        <h3>Perplexity AIとは？Google検索を置き換えるAI検索エンジンの使い方</h3>
-        <p>回答の精度・速度・引用元の信頼性を実際に検証してみた。</p>
-      </div>
-    </div>
-    <div class="article-item">
-      <div class="article-num">03</div>
-      <div class="article-body">
-        <span class="article-tag">ニュース</span>
-        <h3>OpenAIが「o3」を一般公開——推論特化モデルの実力はいかに</h3>
-        <p>数学・プログラミング・科学問題でのパフォーマンスを詳細レポート。</p>
-      </div>
-    </div>
-    <div class="article-item">
-      <div class="article-num">04</div>
-      <div class="article-body">
-        <span class="article-tag">入門</span>
-        <h3>AIプロンプトエンジニアリング入門：初心者が最初に知るべき5つの原則</h3>
-        <p>「なぜAIの返答がイマイチなのか」を根本から解決する基礎知識。</p>
-      </div>
-    </div>
-    <div class="article-item">
-      <div class="article-num">05</div>
-      <div class="article-body">
-        <span class="article-tag">活用術</span>
-        <h3>NotionAIを使ったナレッジベース構築術——チーム導入事例5社</h3>
-        <p>中小企業から大手まで、AIで情報管理を劇的に改善した具体的手法。</p>
+      <div class="pain">
+        <h3>人手不足なのに、採用も育成も重い</h3>
+        <p>ひとり雇うコストと時間を考えると、踏み切れない。でも現場は回っていない。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── AD RECT ── -->
-<div style="display:flex; justify-content:center; padding: 0 5vw 3rem;">
-  <div class="ad-slot ad-slot-rect" style="width:100%; max-width:728px; height:90px;">
-    [ GOOGLE ADSENSE 728×90 / レスポンシブ広告 ]
+<!-- ④ 解決 -->
+<section class="alt">
+  <div class="wrap reveal">
+    <p class="sec-label">PROOF</p>
+    <h2 class="sec-title">「AIでどこまでできるか」を、このサイト自体で証明します</h2>
+    <div class="proof-grid">
+      <div class="proof">
+        <h3>記事はAIが執筆</h3>
+        <p>ブログ記事はAIのアイが書いています。人間のTは、ネタ出しとダメ出しの担当です。</p>
+      </div>
+      <div class="proof">
+        <h3>制作過程を全公開</h3>
+        <p>サイト構築も、AIとの会議も、ボツ案も議事録として公開。きれいごと抜きの舞台裏です。</p>
+      </div>
+      <div class="proof">
+        <h3>失敗もそのまま記録</h3>
+        <p>うまくいくかは未知数。だからこそ、成功談ではなく「進行中の実験」として全部見せます。</p>
+      </div>
+    </div>
+    <p class="proof-note">読み終わる頃には「AIって、うちでもこう使えるかも」が見つかる。そんなサイトを目指しています。</p>
   </div>
-</div>
+</section>
 
-<!-- ── CATEGORIES ── -->
-<section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <p class="section-tag">// CATEGORIES</p>
-  <div class="section-title">カテゴリ</div>
-  <div class="cat-grid">
-    <div class="cat-card">
-      <span class="cat-icon">📰</span>
-      <div class="cat-name">AIニュース</div>
-      <div class="cat-count">38 articles</div>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">🛠️</span>
-      <div class="cat-name">ツール紹介</div>
-      <div class="cat-count">45 articles</div>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">💡</span>
-      <div class="cat-name">活用術</div>
-      <div class="cat-count">29 articles</div>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">📚</span>
-      <div class="cat-name">入門・解説</div>
-      <div class="cat-count">22 articles</div>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">💰</span>
-      <div class="cat-name">AI副業</div>
-      <div class="cat-count">17 articles</div>
+<!-- ⑤ ブログ最新記事 -->
+<section id="blog">
+  <div class="wrap reveal">
+    <p class="sec-label">BLOG</p>
+    <h2 class="sec-title">実験の記録</h2>
+    <div class="post-grid">
+      <a href="#" class="post">
+        <div class="post-head"><span class="badge badge-story">ストーリー</span></div>
+        <h3>顔も名前も出せない会社員が、AIと起業を始めた理由</h3>
+        <p>副業NGの会社員が、それでも始めることにした本当の理由。すべてはこの記事から。</p>
+        <span class="more">読む →</span>
+      </a>
+      <a href="#" class="post">
+        <div class="post-head"><span class="badge badge-log">議事録 #001</span></div>
+        <h3>このサイトはAIが作りました。制作過程を全部見せます</h3>
+        <p>サイト名のボツ案、AIへのダメ出し、迷走した名前決め。制作会議の中身をそのまま公開。</p>
+        <span class="more">読む →</span>
+      </a>
+      <a href="#" class="post">
+        <div class="post-head"><span class="badge badge-guide">お役立ち</span></div>
+        <h3>中小企業がAI導入で最初にやるべきこと3つ</h3>
+        <p>ツール選びの前に決めるべきこと。現場を知る経営管理職の視点で整理しました。</p>
+        <span class="more">読む →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ── -->
-<section>
-  <div class="cta-banner">
+<!-- ⑥ CTA -->
+<section id="service" class="cta-sec">
+  <div class="wrap reveal">
+    <p class="sec-label">SERVICE</p>
+    <h2 class="sec-title">AI活用の無料相談（30分）</h2>
+    <p>「うちの場合はどこから始めればいい？」に、実験中の当事者としてお答えします。売り込みはしません。実験仲間が増えたら嬉しい、それだけです。</p>
+    <a href="#contact" class="btn btn-orange">無料相談について見る</a>
+    <span class="cta-quiet">※現在は準備中です。お問い合わせからご連絡ください。</span>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap foot">
     <div>
-      <h3>週3回、AIの最新情報をお届け</h3>
-      <p>メルマガ登録で限定レポート「2025年必須AIツール30選」を無料プレゼント</p>
+      <strong>人を雇わずAIと起業中</strong><br>
+      © 2026 中の人T &amp; アイ
     </div>
-    <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-      <input type="email" placeholder="your@email.com" style="
-        background: var(--bg);
-        border: 1px solid var(--border);
-        color: var(--text);
-        padding: 10px 16px;
-        font-family: 'Space Mono', monospace;
-        font-size: 0.78rem;
-        width: 220px;
-        outline: none;
-      ">
-      <button class="btn-primary">無料登録</button>
-    </div>
+    <nav class="foot-links">
+      <a href="#">お問い合わせ</a>
+      <a href="#">プライバシーポリシー</a>
+    </nav>
   </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-logo">AI<span>INSIGHT</span></div>
-  <div class="footer-links">
-    <a href="#">プロフィール</a>
-    <a href="#">プライバシーポリシー</a>
-    <a href="#">お問い合わせ</a>
-    <a href="#">サイトマップ</a>
-  </div>
-  <div class="footer-copy">© 2025 AIINSIGHT. ALL RIGHTS RESERVED.</div>
 </footer>
 
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
