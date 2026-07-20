@@ -1,0 +1,22 @@
+---
+interface Props {
+  variant?: 'top' | 'article';
+}
+const { variant = 'top' } = Astro.props;
+---
+<footer id={variant === 'top' ? 'contact' : undefined}>
+  <div class="wrap foot">
+    <div>
+      <strong>人を雇わずAIと起業中</strong><br>
+      © 2026 中の人T &amp; アイ
+    </div>
+    {variant === 'top' ? (
+      <nav class="foot-links">
+        <a href="#">お問い合わせ</a>
+        <a href="#">プライバシーポリシー</a>
+      </nav>
+    ) : (
+      <div><a href="/">トップへ戻る</a></div>
+    )}
+  </div>
+</footer>

@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { badgeClass, badgeLabel } from '../lib/posts';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+const { post } = Astro.props;
+const { data } = post;
+---
+<a href={`/posts/${post.id}/`} class="post">
+  <div class="post-head"><span class={`badge ${badgeClass[data.category]}`}>{badgeLabel(data)}</span></div>
+  <h3>{data.title}</h3>
+  <p>{data.description}</p>
+  <span class="more">読む →</span>
+</a>

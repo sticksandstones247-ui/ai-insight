@@ -1,0 +1,22 @@
+---
+interface Props {
+  variant?: 'top' | 'article';
+}
+const { variant = 'top' } = Astro.props;
+const home = variant === 'top' ? '#' : '/';
+---
+<header>
+  <div class="wrap nav">
+    <a href={home} class="brand">人を雇わずAIと起業中<small>このサイトはAIのアイが書いています。</small></a>
+    {variant === 'top' ? (
+      <nav class="nav-links">
+        <a href="#blog">ブログ</a>
+        <a href="#about">私について</a>
+        <a href="#service">サービス</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    ) : (
+      <a href="/#blog" class="back">← 記事一覧へ</a>
+    )}
+  </div>
+</header>

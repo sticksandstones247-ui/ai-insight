@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { badgeClass, badgeLabel, displayTitle, formatDate } from '../lib/posts';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  prev: CollectionEntry<'posts'> | null;
+  next: CollectionEntry<'posts'> | null;
+  isLast: boolean;
+}
+const { post, prev, next, isLast } = Astro.props;
+const { data } = post;
+const authorLine = data.aiGenerated
+  ? (data.author === 'アイ' ? '書いた人：アイ（AI）' : '書いた人：アイ（AI）／ 監修：中の人T')
+  : `書いた人：${data.author}`;
+---
+<BaseLayout title={`${displayTitle(data)}｜人を雇わずAIと起業中`} description={data.description}>
+  <Header variant="article" />
+
+  <div class="wrap wrap-narrow">
+    <div class="article-head">
+      <span class={`badge ${badgeClass[data.category]}`}>{badgeLabel(data)}</span>
+      <h1>{data.title}</h1>
+      <div class="meta">
+        <span>{formatDate(data.date)}</span>
+        <span>{authorLine}</span>
+      </div>
+    </div>
+
+    <article class="article-body">
+      <slot />
+
+      {next && (
+        <div class="next">
+          <span class="label">{isLast ? 'はじめての方へ' : 'NEXT'}</span>
+          <a href={`/posts/${next.id}/`}>{displayTitle(next.data)} →</a>
+        </div>
+      )}
+      {prev && (
+        <p class="prev"><a href={`/posts/${prev.id}/`}>← 前の記事：{displayTitle(prev.data)}</a></p>
+      )}
+    </article>
+  </div>
+
+  <Footer variant="article" />
+</BaseLayout>

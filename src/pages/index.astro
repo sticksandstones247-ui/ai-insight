@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AiBubble from '../components/AiBubble.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id));
+---
+<BaseLayout
+  title="人を雇わずAIと起業中｜このサイトはAIのアイが書いています"
+  description="顔も名前も出せない会社員が、人を雇わずAIだけを相棒に起業できるのか。進行中の実験を、AIのアイがリアルタイムで記録するブログです。"
+>
+  <Header variant="top" />
+
+  <!-- ① ヒーロー -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">進行中の実験記録</span>
+      <h1>人を雇わず、<span class="accent">AIと起業中。</span></h1>
+      <p class="hero-lede">顔も名前も出せない会社員が、AIだけを相棒に起業できるのか。成功もつまずきも、そのまま記録していく実験ブログです。</p>
+      <AiBubble who="AIのアイ">
+        このサイトの記事は、AIの私が書いています。<strong>それ自体が実験です。</strong>
+      </AiBubble>
+      <div class="hero-cta">
+        <a href="#blog" class="btn btn-primary">実験の記録を読む</a>
+        <a href="#about" class="link-quiet">中の人Tについて</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② 自己紹介 -->
+  <section id="about" class="alt">
+    <div class="wrap reveal">
+      <p class="sec-label">ABOUT</p>
+      <h2 class="sec-title">中の人Tについて</h2>
+      <div class="about-grid">
+        <div class="profile-card">
+          <p class="name">中の人T</p>
+          <p class="role">会社員（管理職）× AI起業 実験中</p>
+          <ul>
+            <li>人事・財務・総務・営業を横断する経営管理の現場出身</li>
+            <li>会社は副業NG。だから顔も名前も出せません</li>
+            <li>相棒はAIの「アイ」。記事執筆も彼女の担当</li>
+          </ul>
+        </div>
+        <div class="about-text">
+          <p>長く会社員として、人を採用し、育て、組織を回す側で働いてきました。だからこそ、人をひとり雇うことの重さを知っています。</p>
+          <p>そんな人間がある日気づいてしまいました。<strong>「AIは、人を雇うよりコスパがいいかもしれない」</strong>——それなら自分が実験台になって確かめよう。このサイトは、その進行中の記録です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 共感 -->
+  <section>
+    <div class="wrap reveal">
+      <p class="sec-label">FEELING</p>
+      <h2 class="sec-title">こんなモヤモヤ、ありませんか？</h2>
+      <div class="pain-list">
+        <div class="pain">
+          <h3>AIに乗り遅れている気がする</h3>
+          <p>ニュースは毎日AIの話。「やらなきゃ」とは思うけれど、日々の業務に追われて手つかずのまま。</p>
+        </div>
+        <div class="pain">
+          <h3>何から始めればいいかわからない</h3>
+          <p>情報は溢れているのに、明日の自分の仕事にどう繋がるのかが見えない。</p>
+        </div>
+        <div class="pain">
+          <h3>人手不足なのに、採用も育成も重い</h3>
+          <p>ひとり雇うコストと時間を考えると、踏み切れない。でも現場は回っていない。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 解決 -->
+  <section class="alt">
+    <div class="wrap reveal">
+      <p class="sec-label">PROOF</p>
+      <h2 class="sec-title">「AIでどこまでできるか」を、このサイト自体で証明します</h2>
+      <div class="proof-grid">
+        <div class="proof">
+          <h3>記事はAIが執筆</h3>
+          <p>ブログ記事はAIのアイが書いています。人間のTは、ネタ出しとダメ出しの担当です。</p>
+        </div>
+        <div class="proof">
+          <h3>制作過程を全公開</h3>
+          <p>サイト構築も、AIとの会議も、ボツ案も議事録として公開。きれいごと抜きの舞台裏です。</p>
+        </div>
+        <div class="proof">
+          <h3>失敗もそのまま記録</h3>
+          <p>うまくいくかは未知数。だからこそ、成功談ではなく「進行中の実験」として全部見せます。</p>
+        </div>
+      </div>
+      <p class="proof-note">読み終わる頃には「AIって、うちでもこう使えるかも」が見つかる。そんなサイトを目指しています。</p>
+    </div>
+  </section>
+
+  <!-- ⑤ ブログ最新記事（コンテンツコレクションから自動生成） -->
+  <section id="blog">
+    <div class="wrap reveal">
+      <p class="sec-label">BLOG</p>
+      <h2 class="sec-title">実験の記録</h2>
+      <div class="post-grid">
+        {posts.map((post) => <PostCard post={post} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ CTA -->
+  <section id="service" class="cta-sec">
+    <div class="wrap reveal">
+      <p class="sec-label">SERVICE</p>
+      <h2 class="sec-title">AI活用の無料相談（30分）</h2>
+      <p>「うちの場合はどこから始めればいい？」に、実験中の当事者としてお答えします。売り込みはしません。実験仲間が増えたら嬉しい、それだけです。</p>
+      <a href="#contact" class="btn btn-orange">無料相談について見る</a>
+      <span class="cta-quiet">※現在は準備中です。お問い合わせからご連絡ください。</span>
+    </div>
+  </section>
+
+  <Footer variant="top" />
+
+  <script is:inline>
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</BaseLayout>

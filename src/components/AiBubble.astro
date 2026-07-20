@@ -1,0 +1,13 @@
+---
+interface Props {
+  who?: string;
+}
+const { who } = Astro.props;
+---
+<div class="ai-line">
+  <div class="ai-avatar" aria-hidden="true">アイ</div>
+  <div class="ai-bubble">
+    {who && <span class="who">{who}</span>}
+    <slot />
+  </div>
+</div>
