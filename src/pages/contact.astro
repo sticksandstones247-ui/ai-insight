@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Googleフォーム埋め込みURL（確定済み）:
+// https://docs.google.com/forms/d/e/1FAIpQLSeSxq2KzvKEAxOt35T1SJpHClFRPy5xqBLMlT9bPFDl-Mh8bw/viewform?usp=header
+const formEmbedUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSeSxq2KzvKEAxOt35T1SJpHClFRPy5xqBLMlT9bPFDl-Mh8bw/viewform?usp=header&embedded=true';
+---
+<BaseLayout
+  title="お問い合わせ｜人を雇わずAIと起業中"
+  description="「人を雇わずAIと起業中」へのご質問・ご感想・お仕事のご相談はこちらのフォームからお気軽にご連絡ください。"
+>
+  <Header variant="article" backHref="/" backLabel="← トップへ戻る" />
+
+  <div class="wrap wrap-narrow">
+    <div class="article-head">
+      <h1>お問い合わせ</h1>
+    </div>
+
+    <article class="article-body">
+      <p>当サイト「人を雇わずAIと起業中」へのご質問・ご感想・お仕事のご相談などは、以下のフォームよりお気軽にご連絡ください。</p>
+      <p>内容を確認の上、順次ご返信いたします。返信までにお時間をいただく場合がございます。</p>
+
+      <div class="gform-wrap">
+        <iframe
+          src={formEmbedUrl}
+          width="100%"
+          height="800"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="お問い合わせフォーム"
+        >読み込んでいます…</iframe>
+      </div>
+
+      <p>なお、いただいた情報の取り扱いについては<a href="/privacy">プライバシーポリシー</a>をご確認ください。</p>
+    </article>
+  </div>
+
+  <Footer variant="article" />
+</BaseLayout>
+
+<style>
+  .gform-wrap {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2em 0;
+  }
+  .gform-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 800px;
+    border: 0;
+  }
+  @media (max-width: 480px) {
+    .gform-wrap iframe {
+      height: 1000px;
+    }
+  }
+</style>

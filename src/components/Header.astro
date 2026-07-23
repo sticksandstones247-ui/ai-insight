@@ -1,8 +1,10 @@
 ---
 interface Props {
   variant?: 'top' | 'article';
+  backHref?: string;
+  backLabel?: string;
 }
-const { variant = 'top' } = Astro.props;
+const { variant = 'top', backHref = '/#blog', backLabel = '← 記事一覧へ' } = Astro.props;
 const home = variant === 'top' ? '#' : '/';
 ---
 <header>
@@ -16,7 +18,7 @@ const home = variant === 'top' ? '#' : '/';
         <a href="#contact">お問い合わせ</a>
       </nav>
     ) : (
-      <a href="/#blog" class="back">← 記事一覧へ</a>
+      <a href={backHref} class="back">{backLabel}</a>
     )}
   </div>
 </header>
