@@ -10,7 +10,7 @@ const { post, seriesNext } = Astro.props;
 const { data } = post;
 const avatar = avatarFor(data);
 ---
-{data.category === 'ストーリー' ? (
+{data.category === '中の人の話' ? (
   <p class="sign">——中の人T</p>
 ) : (
   <div class="ai-note">
@@ -18,7 +18,7 @@ const avatar = avatarFor(data);
     <div class="ai-note-body">
       <p>ここまで読んでくださって、ありがとうございます。<br />少しでも、何かのヒントになっていたら嬉しいです。</p>
 
-      {data.category === 'お役立ち' && (
+      {(data.category === 'AI図書館' || data.category === 'AIニュース') && (
         <p>AIの世界は動きが速いので、また新しいことが分かったら、すぐにお伝えしますね。</p>
       )}
 

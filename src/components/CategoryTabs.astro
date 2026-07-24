@@ -1,0 +1,31 @@
+---
+import { CATEGORIES } from '../lib/posts';
+
+interface Props {
+  active?: string; // アクティブなカテゴリのslug。未指定（トップページ）は「すべて」
+}
+const { active } = Astro.props;
+---
+<nav class="cat-tabs" aria-label="カテゴリで絞り込み">
+  <a href="/#blog" class={`cat-tab ${!active ? 'is-active' : ''}`}>すべて</a>
+  {CATEGORIES.map((c) => (
+    <a href={`/category/${c.slug}/`} class={`cat-tab ${active === c.slug ? 'is-active' : ''}`}>{c.label}</a>
+  ))}
+</nav>
+
+<style>
+  .cat-tabs{
+    display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    padding-bottom:6px;margin-bottom:20px;
+    scrollbar-width:none;
+  }
+  .cat-tabs::-webkit-scrollbar{display:none}
+  .cat-tab{
+    flex:none;white-space:nowrap;font-size:13px;font-weight:700;
+    padding:8px 18px;border-radius:999px;
+    border:1px solid var(--line);color:var(--navy-soft);background:var(--white);
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .cat-tab.is-active{background:var(--orange);color:var(--white);border-color:var(--orange)}
+  .cat-tab:hover:not(.is-active){border-color:var(--orange);color:var(--navy)}
+</style>

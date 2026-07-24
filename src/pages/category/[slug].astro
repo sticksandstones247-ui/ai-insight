@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/PostCard.astro';
+import CategoryTabs from '../../components/CategoryTabs.astro';
+import SortToggle from '../../components/SortToggle.astro';
+import { CATEGORIES, slugToCategory } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  return CATEGORIES.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const category = slugToCategory(slug)!;
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft && data.category === category))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id));
+---
+<BaseLayout
+  title={`${category}｜人を雇わずAIと起業中`}
+  description={`「人を雇わずAIと起業中」の${category}カテゴリの記事一覧です。`}
+>
+  <Header variant="article" backHref="/" backLabel="← トップへ戻る" />
+
+  <section id="blog">
+    <div class="wrap reveal">
+      <p class="sec-label">CATEGORY</p>
+      <h1 class="sec-title">{category}</h1>
+      <CategoryTabs active={slug} />
+      <SortToggle />
+      <div class="post-grid">
+        {posts.map((post) => <PostCard post={post} />)}
+      </div>
+    </div>
+  </section>
+
+  <Footer variant="top" />
+</BaseLayout>

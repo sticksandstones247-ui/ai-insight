@@ -5,7 +5,7 @@ const posts = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
-    category: z.enum(['ストーリー', '議事録', 'お役立ち']),
+    category: z.enum(['議事録', '中の人の話', 'AI図書館', 'AIニュース']),
     series: z.string().nullish(),
     seriesNumber: z.number().nullish(),
     date: z.coerce.date(),

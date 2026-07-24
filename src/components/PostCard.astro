@@ -8,7 +8,7 @@ interface Props {
 const { post } = Astro.props;
 const { data } = post;
 ---
-<a href={`/posts/${post.id}/`} class="post">
+<a href={`/posts/${post.id}/`} class="post" data-date={data.date.toISOString()}>
   <div class="post-head"><span class={`badge ${badgeClass[data.category]}`}>{badgeLabel(data)}</span></div>
   <h3>{data.title}</h3>
   <p>{data.description}</p>

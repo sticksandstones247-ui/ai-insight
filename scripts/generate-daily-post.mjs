@@ -45,7 +45,7 @@ const system = `あなたは「アイ」というAI。「人を雇わずAIと起
 {
   "title": "記事タイトル（32字以内目安）",
   "description": "検索・SNS用の120字程度の要約",
-  "category": "お役立ち",
+  "category": "AIニュース",
   "body": "Markdown形式の本文"
 }`;
 
@@ -96,7 +96,7 @@ for (const key of ['title', 'description', 'body']) {
 const fm = [
   '---',
   `title: ${JSON.stringify(article.title.trim())}`,
-  'category: お役立ち',
+  'category: AIニュース',
   'series:',
   'seriesNumber:',
   `date: ${ymd}`,

@@ -1,0 +1,42 @@
+---
+// 同じ親要素内にある .post-grid を並び替える。
+// マークアップ上、<SortToggle /> と <div class="post-grid"> を
+// 同じ親要素（同じ.wrap内など）に置くこと。
+---
+<div class="sort-toggle" role="group" aria-label="並び替え">
+  <button type="button" class="sort-btn is-active" data-order="desc">新着順</button>
+  <button type="button" class="sort-btn" data-order="asc">古い順</button>
+</div>
+
+<style>
+  .sort-toggle{display:flex;gap:8px;margin-bottom:24px}
+  .sort-btn{
+    font-size:13px;font-weight:700;padding:8px 16px;border-radius:999px;
+    border:1px solid var(--line);background:var(--white);color:var(--navy-soft);
+    cursor:pointer;transition:background .15s,color .15s,border-color .15s;
+  }
+  .sort-btn.is-active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+  .sort-btn:hover:not(.is-active){border-color:var(--orange);color:var(--navy)}
+</style>
+
+<script>
+  function initSortToggle(toggle: Element) {
+    const grid = toggle.parentElement?.querySelector('.post-grid');
+    if (!grid) return;
+    const buttons = toggle.querySelectorAll<HTMLButtonElement>('.sort-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const order = btn.dataset.order;
+        buttons.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const cards = [...grid.querySelectorAll<HTMLElement>('.post')];
+        cards.sort((a, b) => {
+          const da = new Date(a.dataset.date ?? 0).getTime();
+          const db = new Date(b.dataset.date ?? 0).getTime();
+          return order === 'asc' ? da - db : db - da;
+        });
+        cards.forEach((c) => grid.appendChild(c));
+      });
+    });
+  }
+  document.querySelectorAll('.sort-toggle').forEach(initSortToggle);
+</script>

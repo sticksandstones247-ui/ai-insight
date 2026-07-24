@@ -28,10 +28,26 @@ export function badgeLabel(data: PostData): string {
 }
 
 export const badgeClass: Record<PostData['category'], string> = {
-  'ストーリー': 'badge-story',
   '議事録': 'badge-log',
-  'お役立ち': 'badge-guide',
+  '中の人の話': 'badge-story',
+  'AI図書館': 'badge-guide',
+  'AIニュース': 'badge-news',
 };
+
+// カテゴリ一覧ページのURLスラッグ（日本語をURLに含めないため）。
+// 表示順もこの並びに準拠する（ナビタブ・一覧のカテゴリ順）。
+export const CATEGORIES: { label: PostData['category']; slug: string }[] = [
+  { label: '議事録', slug: 'gijiroku' },
+  { label: '中の人の話', slug: 'nakanohito' },
+  { label: 'AI図書館', slug: 'library' },
+  { label: 'AIニュース', slug: 'news' },
+];
+
+export const slugToCategory = (slug: string): PostData['category'] | undefined =>
+  CATEGORIES.find((c) => c.slug === slug)?.label;
+
+export const categoryToSlug = (label: PostData['category']): string =>
+  CATEGORIES.find((c) => c.label === label)!.slug;
 
 const pad2 = (n: number) => String(n).padStart(2, '0');
 

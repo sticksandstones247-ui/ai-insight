@@ -162,6 +162,7 @@ section{padding:84px 0}
 .badge-story{background:var(--orange-soft);color:#B47410}
 .badge-log{background:#E8EDF6;color:var(--navy)}
 .badge-guide{background:#EAF4EC;color:#2F6B45}
+.badge-news{background:#E7F1FB;color:#2166A3}
 .post h3{
   font-family:var(--display);font-size:17px;font-weight:600;line-height:1.6;
   padding:12px 22px 6px;flex:1;
