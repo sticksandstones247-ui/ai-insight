@@ -25,7 +25,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft && data.ca
   <Header variant="article" backHref="/" backLabel="← トップへ戻る" />
 
   <section id="blog">
-    <div class="wrap reveal">
+    <div class="wrap">
       <p class="sec-label">CATEGORY</p>
       <h1 class="sec-title">{category}</h1>
       <CategoryTabs active={slug} />
