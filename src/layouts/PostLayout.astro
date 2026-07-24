@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PostFooter from '../components/PostFooter.astro';
 import { badgeClass, badgeLabel, displayTitle, formatDate } from '../lib/posts';
 
 interface Props {
@@ -10,8 +11,9 @@ interface Props {
   prev: CollectionEntry<'posts'> | null;
   next: CollectionEntry<'posts'> | null;
   isLast: boolean;
+  seriesNext: CollectionEntry<'posts'> | null;
 }
-const { post, prev, next, isLast } = Astro.props;
+const { post, prev, next, isLast, seriesNext } = Astro.props;
 const { data } = post;
 const authorLine = data.aiGenerated
   ? (data.author === 'アイ' ? '書いた人：アイ（AI）' : '書いた人：アイ（AI）／ 監修：中の人T')
@@ -33,7 +35,10 @@ const authorLine = data.aiGenerated
     <article class="article-body">
       <slot />
 
-      {next && (
+      <PostFooter post={post} seriesNext={seriesNext} />
+
+      {/* 議事録で末尾に「▼ 次回」を出す号は、navyのNEXTボックスと重複するため抑制 */}
+      {next && !seriesNext && (
         <div class="next">
           <span class="label">{isLast ? 'はじめての方へ' : 'NEXT'}</span>
           <a href={`/posts/${next.id}/`}>{displayTitle(next.data)} →</a>

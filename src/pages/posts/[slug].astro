@@ -7,6 +7,15 @@ export async function getStaticPaths() {
     .sort((a, b) => a.data.date.getTime() - b.data.date.getTime() || a.id.localeCompare(b.id));
   return posts.map((post, i) => {
     const next = posts.length > 1 ? posts[(i + 1) % posts.length] : null;
+    // 同一シリーズの次号（seriesNumber+1）。議事録の末尾「▼ 次回」に使う。
+    const seriesNext =
+      post.data.category === '議事録' && post.data.seriesNumber
+        ? posts.find(
+            (p) =>
+              p.data.series === post.data.series &&
+              p.data.seriesNumber === (post.data.seriesNumber ?? 0) + 1,
+          ) ?? null
+        : null;
     return {
       params: { slug: post.id },
       props: {
@@ -14,14 +23,15 @@ export async function getStaticPaths() {
         prev: i > 0 ? posts[i - 1] : null,
         next,
         isLast: i === posts.length - 1,
+        seriesNext,
       },
     };
   });
 }
 
-const { post, prev, next, isLast } = Astro.props;
+const { post, prev, next, isLast, seriesNext } = Astro.props;
 const { Content } = await render(post);
 ---
-<PostLayout post={post} prev={prev} next={next} isLast={isLast}>
+<PostLayout post={post} prev={prev} next={next} isLast={isLast} seriesNext={seriesNext}>
   <Content />
 </PostLayout>

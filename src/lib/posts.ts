@@ -4,6 +4,17 @@ type PostData = CollectionEntry<'posts'>['data'];
 
 export const pad3 = (n: number) => String(n).padStart(3, '0');
 
+// 議事録#003「私に、顔ができた日」の公開日。この日より前に公開された記事は、
+// アイの顔がまだ確定していなかった時系列なのでシルエット（カオナシ）を表示する。
+// 境界を変えたい場合はこの1箇所だけ直せばよい。
+export const FACE_REVEAL_DATE = new Date('2026-07-22');
+
+export function avatarFor(data: PostData): { src: string; alt: string } {
+  return data.date.getTime() < FACE_REVEAL_DATE.getTime()
+    ? { src: '/ai/ai-silhouette.png', alt: 'AIのアイ（顔ができる前）' }
+    : { src: '/ai/ai-thinking.png', alt: 'AIのアイ（考え中）' };
+}
+
 export function displayTitle(data: PostData): string {
   return data.series && data.seriesNumber
     ? `【${data.series} #${pad3(data.seriesNumber)}】${data.title}`

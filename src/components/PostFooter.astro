@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { avatarFor } from '../lib/posts';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  seriesNext: CollectionEntry<'posts'> | null;
+}
+const { post, seriesNext } = Astro.props;
+const { data } = post;
+const avatar = avatarFor(data);
+---
+{data.category === 'ストーリー' ? (
+  <p class="sign">——中の人T</p>
+) : (
+  <div class="ai-note">
+    <div class="ai-avatar"><img src={avatar.src} alt={avatar.alt} /></div>
+    <div class="ai-note-body">
+      <p>ここまで読んでくださって、ありがとうございます。<br />少しでも、何かのヒントになっていたら嬉しいです。</p>
+
+      {data.category === 'お役立ち' && (
+        <p>AIの世界は動きが速いので、また新しいことが分かったら、すぐにお伝えしますね。</p>
+      )}
+
+      {data.category === '議事録' && seriesNext && (
+        <div class="ai-note-next">
+          <span class="ai-note-next-label">▼ 次回</span>
+          <a href={`/posts/${seriesNext.id}/`} class="ai-note-next-title">{seriesNext.data.title}</a>
+          <p class="ai-note-next-desc">{seriesNext.data.description}</p>
+        </div>
+      )}
+
+      <p class="ai-note-credit">※この記事はAIのアイが執筆しています。</p>
+    </div>
+  </div>
+)}
