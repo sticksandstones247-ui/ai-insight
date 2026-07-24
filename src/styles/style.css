@@ -252,15 +252,16 @@ section{padding:84px 0}
   background:var(--paper);border:1px solid var(--line);border-radius:2px 16px 16px 16px;
   padding:16px 20px;margin-top:56px;font-size:13.5px;color:var(--navy-soft);
 }
-.ai-note .ai-avatar{width:40px;height:40px;font-size:13px}
+.ai-note{font-size:14.5px}
+.ai-note .ai-avatar{width:60px;height:60px}
 .ai-note-body{flex:1}
 .ai-note-body p{margin:0 0 .8em}
 .ai-note-body p:last-child{margin-bottom:0}
 .ai-note-next{border-top:1px solid var(--line);margin:.2em 0 .8em;padding-top:.8em}
-.ai-note-next-label{font-weight:700;color:var(--orange);font-size:11px;letter-spacing:.14em}
-.ai-note-next-title{display:block;font-family:var(--display);font-weight:600;font-size:15px;color:var(--navy);margin:4px 0}
+.ai-note-next-label{font-weight:700;color:var(--orange);font-size:12.5px;letter-spacing:.14em}
+.ai-note-next-title{display:block;font-family:var(--display);font-weight:600;font-size:17.5px;line-height:1.5;color:var(--navy);margin:5px 0}
 .ai-note-next-title:hover{color:var(--orange)}
-.ai-note-next-desc{font-size:12.5px}
+.ai-note-next-desc{font-size:14px}
 
 /* prev / next */
 .next{

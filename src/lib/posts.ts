@@ -12,7 +12,7 @@ export const FACE_REVEAL_DATE = new Date('2026-07-22');
 export function avatarFor(data: PostData): { src: string; alt: string } {
   return data.date.getTime() < FACE_REVEAL_DATE.getTime()
     ? { src: '/ai/ai-silhouette.png', alt: 'AIのアイ（顔ができる前）' }
-    : { src: '/ai/ai-thinking.png', alt: 'AIのアイ（考え中）' };
+    : { src: '/ai/ai-default.png', alt: 'AIのアイ' };
 }
 
 export function displayTitle(data: PostData): string {
