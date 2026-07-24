@@ -5,7 +5,7 @@ interface Props {
 const { who } = Astro.props;
 ---
 <div class="ai-line">
-  <div class="ai-avatar" aria-hidden="true">アイ</div>
+  <div class="ai-avatar"><img src="/ai/ai-default.png" alt="AIのアイ"></div>
   <div class="ai-bubble">
     {who && <span class="who">{who}</span>}
     <slot />
