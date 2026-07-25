@@ -9,8 +9,16 @@ interface Props {
 const { post, seriesNext } = Astro.props;
 const { data } = post;
 const avatar = avatarFor(data);
+// ai-note（アイのアバター・注記）を出さないのは「中の人Tが書いた一次情報記事」だから。
+// これはカテゴリではなく著者(author)に紐づく性質なので、authorで判定する。
+// 複数カテゴリ対応前は category === '中の人の話' で判定していたが、
+// 「中の人の話」に他カテゴリ（例：AI図書館）が併記された場合に category だけでは
+// 判定が割れてしまうため、より本質的な author 基準に変更した。
+// 既存記事はすべて 中の人の話→author:中の人T／それ以外→author:アイ で一致しており、
+// この変更による既存記事への挙動差は無い。
+const hideAiNote = data.author === '中の人T';
 ---
-{data.category === '中の人の話' ? (
+{hideAiNote ? (
   <p class="sign">——中の人T</p>
 ) : (
   <div class="ai-note">
@@ -18,11 +26,11 @@ const avatar = avatarFor(data);
     <div class="ai-note-body">
       <p>ここまで読んでくださって、ありがとうございます。<br />少しでも、何かのヒントになっていたら嬉しいです。</p>
 
-      {(data.category === 'AI図書館' || data.category === 'AIニュース') && (
+      {(data.category.includes('AI図書館') || data.category.includes('AIニュース')) && (
         <p>AIの世界は動きが速いので、また新しいことが分かったら、すぐにお伝えしますね。</p>
       )}
 
-      {data.category === '議事録' && seriesNext && (
+      {data.category.includes('議事録') && seriesNext && (
         <div class="ai-note-next">
           <span class="ai-note-next-label">▼ 次回</span>
           <a href={`/posts/${seriesNext.id}/`} class="ai-note-next-title">{seriesNext.data.title}</a>

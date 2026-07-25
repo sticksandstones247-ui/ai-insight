@@ -4,7 +4,7 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostFooter from '../components/PostFooter.astro';
-import { badgeClass, badgeLabel, displayTitle, formatDate } from '../lib/posts';
+import { badgeClass, badgeLabelFor, displayTitle, formatDate } from '../lib/posts';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -24,7 +24,11 @@ const authorLine = data.aiGenerated
 
   <div class="wrap wrap-narrow">
     <div class="article-head">
-      <span class={`badge ${badgeClass[data.category]}`}>{badgeLabel(data)}</span>
+      <div class="badge-row">
+        {data.category.map((cat) => (
+          <span class={`badge ${badgeClass[cat]}`}>{badgeLabelFor(cat, data)}</span>
+        ))}
+      </div>
       <h1>{data.title}</h1>
       <div class="meta">
         <span>{formatDate(data.date)}</span>

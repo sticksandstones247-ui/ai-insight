@@ -1,6 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 
 type PostData = CollectionEntry<'posts'>['data'];
+// category はスキーマ側で常に配列に正規化される。単一カテゴリの型はここから抽出する。
+type CategoryLabel = PostData['category'][number];
 
 export const pad3 = (n: number) => String(n).padStart(3, '0');
 
@@ -21,13 +23,15 @@ export function displayTitle(data: PostData): string {
     : data.title;
 }
 
-export function badgeLabel(data: PostData): string {
-  return data.category === '議事録' && data.seriesNumber
+// 1つのカテゴリラベルに対するバッジ文言（議事録はseriesNumberがあれば#00X付与）。
+// 複数カテゴリの記事はこの関数をカテゴリごとに呼び出し、バッジを並べて表示する。
+export function badgeLabelFor(category: CategoryLabel, data: PostData): string {
+  return category === '議事録' && data.seriesNumber
     ? `議事録 #${pad3(data.seriesNumber)}`
-    : data.category;
+    : category;
 }
 
-export const badgeClass: Record<PostData['category'], string> = {
+export const badgeClass: Record<CategoryLabel, string> = {
   '議事録': 'badge-log',
   '中の人の話': 'badge-story',
   'AI図書館': 'badge-guide',
@@ -36,17 +40,17 @@ export const badgeClass: Record<PostData['category'], string> = {
 
 // カテゴリ一覧ページのURLスラッグ（日本語をURLに含めないため）。
 // 表示順もこの並びに準拠する（ナビタブ・一覧のカテゴリ順）。
-export const CATEGORIES: { label: PostData['category']; slug: string }[] = [
+export const CATEGORIES: { label: CategoryLabel; slug: string }[] = [
   { label: '議事録', slug: 'gijiroku' },
   { label: '中の人の話', slug: 'nakanohito' },
   { label: 'AI図書館', slug: 'library' },
   { label: 'AIニュース', slug: 'news' },
 ];
 
-export const slugToCategory = (slug: string): PostData['category'] | undefined =>
+export const slugToCategory = (slug: string): CategoryLabel | undefined =>
   CATEGORIES.find((c) => c.slug === slug)?.label;
 
-export const categoryToSlug = (label: PostData['category']): string =>
+export const categoryToSlug = (label: CategoryLabel): string =>
   CATEGORIES.find((c) => c.label === label)!.slug;
 
 const pad2 = (n: number) => String(n).padStart(2, '0');

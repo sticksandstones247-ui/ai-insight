@@ -9,7 +9,7 @@ export async function getStaticPaths() {
     const next = posts.length > 1 ? posts[(i + 1) % posts.length] : null;
     // 同一シリーズの次号（seriesNumber+1）。議事録の末尾「▼ 次回」に使う。
     const seriesNext =
-      post.data.category === '議事録' && post.data.seriesNumber
+      post.data.category.includes('議事録') && post.data.seriesNumber
         ? posts.find(
             (p) =>
               p.data.series === post.data.series &&
