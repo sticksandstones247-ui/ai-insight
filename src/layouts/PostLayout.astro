@@ -18,6 +18,10 @@ const { data } = post;
 const authorLine = data.aiGenerated
   ? (data.author === 'アイ' ? '書いた人：アイ（AI）' : '書いた人：アイ（AI）／ 監修：中の人T')
   : `書いた人：${data.author}`;
+// 議事録はNEXTの遷移先を投稿順ではなく同シリーズの次号にする。
+// 次号が無い（＝シリーズ最新号）場合はNEXTボタンごと非表示にする。
+const isGijiroku = data.category.includes('議事録');
+const nextPost = isGijiroku ? seriesNext : next;
 ---
 <BaseLayout title={`${displayTitle(data)}｜人を雇わずAIと起業中`} description={data.description}>
   <Header variant="article" />
@@ -39,13 +43,12 @@ const authorLine = data.aiGenerated
     <article class="article-body">
       <slot />
 
-      <PostFooter post={post} seriesNext={seriesNext} />
+      <PostFooter post={post} />
 
-      {/* 議事録で末尾に「▼ 次回」を出す号は、navyのNEXTボックスと重複するため抑制 */}
-      {next && !seriesNext && (
+      {nextPost && (
         <div class="next">
-          <span class="label">{isLast ? 'はじめての方へ' : 'NEXT'}</span>
-          <a href={`/posts/${next.id}/`}>{displayTitle(next.data)} →</a>
+          <span class="label">{!isGijiroku && isLast ? 'はじめての方へ' : 'NEXT'}</span>
+          <a href={`/posts/${nextPost.id}/`}>{displayTitle(nextPost.data)} →</a>
         </div>
       )}
       {prev && (
@@ -54,5 +57,5 @@ const authorLine = data.aiGenerated
     </article>
   </div>
 
-  <Footer variant="article" />
+  <Footer variant="top" />
 </BaseLayout>

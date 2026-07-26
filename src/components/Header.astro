@@ -12,10 +12,10 @@ const home = variant === 'top' ? '#' : '/';
     <a href={home} class="brand">人を雇わずAIと起業中<small>このサイトはAIのアイが書いています。</small></a>
     {variant === 'top' ? (
       <nav class="nav-links">
-        <a href="#blog">ブログ</a>
-        <a href="#about">私について</a>
-        <a href="#service">サービス</a>
-        <a href="#contact">お問い合わせ</a>
+        <a href="/#blog">ブログ</a>
+        <a href="/#about">私について</a>
+        <a href="/#service">サービス</a>
+        <a href="/contact">お問い合わせ</a>
       </nav>
     ) : (
       <a href={backHref} class="back">{backLabel}</a>

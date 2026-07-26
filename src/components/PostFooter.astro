@@ -4,9 +4,8 @@ import { avatarFor } from '../lib/posts';
 
 interface Props {
   post: CollectionEntry<'posts'>;
-  seriesNext: CollectionEntry<'posts'> | null;
 }
-const { post, seriesNext } = Astro.props;
+const { post } = Astro.props;
 const { data } = post;
 const avatar = avatarFor(data);
 // ai-note（アイのアバター・注記）を出さないのは「中の人Tが書いた一次情報記事」だから。
@@ -28,14 +27,6 @@ const hideAiNote = data.author === '中の人T';
 
       {(data.category.includes('AI図書館') || data.category.includes('AIニュース')) && (
         <p>AIの世界は動きが速いので、また新しいことが分かったら、すぐにお伝えしますね。</p>
-      )}
-
-      {data.category.includes('議事録') && seriesNext && (
-        <div class="ai-note-next">
-          <span class="ai-note-next-label">▼ 次回</span>
-          <a href={`/posts/${seriesNext.id}/`} class="ai-note-next-title">{seriesNext.data.title}</a>
-          <p class="ai-note-next-desc">{seriesNext.data.description}</p>
-        </div>
       )}
 
       <p class="ai-note-credit">※この記事はAIのアイが執筆しています。</p>
