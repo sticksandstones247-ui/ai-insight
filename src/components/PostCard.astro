@@ -9,6 +9,11 @@ const { post } = Astro.props;
 const { data } = post;
 ---
 <a href={`/posts/${post.id}/`} class="post" data-date={data.date.toISOString()}>
+  {data.thumbnail && (
+    <div class="post-thumb">
+      <img src={data.thumbnail} alt={data.title} loading="lazy" />
+    </div>
+  )}
   <div class="post-head">
     {data.category.map((cat) => (
       <span class={`badge ${badgeClass[cat]}`}>{badgeLabelFor(cat, data)}</span>
