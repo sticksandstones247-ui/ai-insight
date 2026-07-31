@@ -19,6 +19,36 @@ const { title, description } = Astro.props;
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5813665284956511"
      crossorigin="anonymous"></script>
+<script is:inline>
+// スクロール表示演出のブートストラップ。
+// 「表示」が常に優先。何か失敗したら .js-reveal を外して全部見える状態に戻す。
+(function () {
+  var root = document.documentElement;
+  function showAll() { root.classList.remove('js-reveal'); }
+  try {
+    if (!('IntersectionObserver' in window)) return; // 非対応ブラウザは演出なしで常時表示
+    root.classList.add('js-reveal');
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        var targets = document.querySelectorAll('.reveal');
+        if (!targets.length) { showAll(); return; }
+        var everFired = false;
+        // threshold:0 = 1pxでも入れば発火。要素が画面より遥かに高くても必ず発火する。
+        var io = new IntersectionObserver(function (entries) {
+          everFired = true;
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+        targets.forEach(function (el) { io.observe(el); });
+        // 生存確認：正常なブラウザなら observe 直後に初回コールバックが必ず届く。
+        // 2秒経っても一度も届かない＝オブザーバが死んでいるので、演出を捨てて全部表示する。
+        setTimeout(function () { if (!everFired) showAll(); }, 2000);
+      } catch (err) { showAll(); }
+    });
+  } catch (err) { showAll(); }
+})();
+</script>
 </head>
 <body>
 <slot />

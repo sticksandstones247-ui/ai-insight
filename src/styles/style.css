@@ -285,11 +285,16 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
 .foot-links{display:flex;gap:20px}
 .foot-links a:hover{color:var(--orange)}
 
-/* ================= reveal ================= */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.reveal.on{opacity:1;transform:none}
+/* ================= reveal =================
+   原則：コンテンツは「常に表示」がデフォルト。
+   JSが正常に動いたときだけ <html> に .js-reveal が付き、そのときのみ演出用に隠す。
+   JSが落ちた／IntersectionObserver非対応／スクリプトがブロックされた場合は
+   .js-reveal が付かない（or 外れる）ので、記事カードは必ず表示される。 */
+.reveal{opacity:1;transform:none}
+html.js-reveal .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+html.js-reveal .reveal.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
+  html.js-reveal .reveal{opacity:1;transform:none;transition:none}
   .post:hover,.btn-primary:hover,.btn-orange:hover{transform:none}
 }

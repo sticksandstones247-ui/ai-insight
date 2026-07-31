@@ -103,9 +103,12 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 
   <!-- ⑤ ブログ最新記事（コンテンツコレクションから自動生成） -->
   <section id="blog">
-    <div class="wrap reveal">
-      <p class="sec-label">BLOG</p>
-      <h2 class="sec-title">実験の記録</h2>
+    <div class="wrap">
+      {/* 記事一覧本体は演出の外に置く。演出が本文を隠す構造にしないこと */}
+      <div class="reveal">
+        <p class="sec-label">BLOG</p>
+        <h2 class="sec-title">実験の記録</h2>
+      </div>
       <CategoryTabs />
       <SortToggle />
       <div class="post-grid">
@@ -127,8 +130,4 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 
   <Footer variant="top" />
 
-  <script is:inline>
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  </script>
 </BaseLayout>
